@@ -1,0 +1,18 @@
+.Todo {
+    min-height: 30px;
+    border: 1px solid #999;
+    margin-bottom: 10px;
+    background-color: #eeeaaa;
+}
+
+$depth-size: 30px;
+
+.Todo.depth-1 { }
+
+.Todo.depth-2 {
+    margin-left: $depth-size;
+}
+
+.Todo.depth-3 {
+    margin-left: calc(#{$depth-size} * 2);
+}
