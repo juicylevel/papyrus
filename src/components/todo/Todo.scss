@@ -1,8 +1,17 @@
 .Todo {
     min-height: 30px;
-    border: 1px solid #999;
+    border: 1px solid #ddd;
     margin-bottom: 10px;
-    background-color: #eeeaaa;
+    color: #ddd;
+    line-height: 30px;
+    padding: 3px 5px;
+    background-color: rgba(255, 255, 255, 0.05);
+    cursor: -webkit-grab;
+    cursor: grab;
+
+    .text {
+        vertical-align: middle;
+    }
 }
 
 $depth-size: 30px;

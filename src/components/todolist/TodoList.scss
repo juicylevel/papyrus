@@ -1,3 +1,8 @@
 .TodoList {
     padding: 10px;
+    max-width: 500px;
+
+    .Todo:last-child {
+        margin-bottom: 0px;
+    }
 }
