@@ -4,11 +4,11 @@ import './Todo.css';
 
 class Todo extends Component {
     render () {
-        const { depth } = this.props;
+        const { depth, text } = this.props;
         const className = `Todo depth-${depth}`;
         return (
             <div className={className}>
-                Todo
+                { text }
             </div>
         )
     }
@@ -18,7 +18,8 @@ Todo.propTypes = {
     depth: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.number
-    ])
+    ]),
+    text: PropTypes.string.isRequired
 }
 
 Todo.defaultProps = {
