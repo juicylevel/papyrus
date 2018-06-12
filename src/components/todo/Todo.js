@@ -1,30 +1,50 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import draggable from '../dnd/draggable';
+import { map } from 'lodash';
+// import draggable from '../dnd/draggable';
 import './Todo.css';
 
 class Todo extends Component {
-    render () {
-        const {forwardedRef, depth, text, ...rest} = this.props;
-        const className = `Todo depth-${depth}`;
+    renderChildren() {
+        const {id, childIds} = this.props;
+        return map(childIds, childId => (
+            <ConnectedTodo
+                key={childId}
+                id={childId}
+                parentId={id}
+            />
+        ))
+    }
+
+    render() {
+        const {forwardedRef, text, onMouseDown} = this.props;
+        const childrenTodos = this.renderChildren();
+
         return (
-            <div ref={forwardedRef} className={className} {...rest}>
+            <div
+                ref={forwardedRef}
+                className="Todo"
+                onMouseDown={onMouseDown}
+            >
                 <span className="text">{ text }</span>
+                { childrenTodos }
             </div>
         )
     }
 }
 
 Todo.propTypes = {
-    depth: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number
-    ]),
-    text: PropTypes.string.isRequired
+    id: PropTypes.number,
+    parentId: PropTypes.number,
+    text: PropTypes.string,
+    childIds: PropTypes.arrayOf(PropTypes.number)
 }
 
-Todo.defaultProps = {
-    depth: 1
-}
+const ConnectedTodo = connect(
+    (state, ownProps) => ({
+        ...state.todo[ownProps.id]
+    })
+)(Todo);
 
-export default draggable()(Todo);
+export default ConnectedTodo;

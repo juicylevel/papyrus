@@ -8,20 +8,9 @@
     background-color: rgba(255, 255, 255, 0.05);
     cursor: -webkit-grab;
     cursor: grab;
+    margin-left: 30px;
 
     .text {
         vertical-align: middle;
     }
-}
-
-$depth-size: 30px;
-
-.Todo.depth-1 { }
-
-.Todo.depth-2 {
-    margin-left: $depth-size;
-}
-
-.Todo.depth-3 {
-    margin-left: calc(#{$depth-size} * 2);
 }
