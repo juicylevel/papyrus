@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { map } from 'lodash';
-// import draggable from '../dnd/draggable';
 import './Todo.css';
 
 class Todo extends Component {
@@ -18,17 +17,24 @@ class Todo extends Component {
     }
 
     render() {
-        const {forwardedRef, text, onMouseDown} = this.props;
+        const {
+            forwardedRef,
+            text,
+            onDragStart,
+            onMouseDown
+        } = this.props;
+
         const childrenTodos = this.renderChildren();
 
         return (
             <div
                 ref={forwardedRef}
                 className="Todo"
+                onDragStart={onDragStart}
                 onMouseDown={onMouseDown}
             >
-                <span className="text">{ text }</span>
-                { childrenTodos }
+                <span className="text">{text}</span>
+                {childrenTodos}
             </div>
         )
     }
